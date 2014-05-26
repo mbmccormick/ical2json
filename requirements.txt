@@ -3,8 +3,9 @@ Jinja2==2.6
 Werkzeug==0.8.3
 distribute==0.7.3
 gunicorn==18.0
+wsgiref==0.1.2
 icalendar==2.2
 pytz==2012c
-wsgiref==0.1.2
+dateutil
 PyRSS2Gen
 beautifulsoup
