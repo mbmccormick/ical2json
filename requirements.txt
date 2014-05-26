@@ -6,4 +6,5 @@ gunicorn==18.0
 icalendar==2.2
 pytz==2012c
 wsgiref==0.1.2
-PyRSS2Gen==1.1
+PyRSS2Gen
+beautifulsoup
