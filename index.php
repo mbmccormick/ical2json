@@ -17,7 +17,7 @@
 	print("<pubDate>" . date(DATE_RSS) . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
 	
-	$data = $ical->eventsFromRange(new DateTime('1970/01/01'), new DateTime());
+	$data = $ical->eventsFromRange(new DateTime(), new DateTime('1970/01/01'));
 	
 	if ($_GET["showAll"] == "true")
 		$data = $ical->events();
