@@ -5,10 +5,10 @@
 	$ical = new ical($_GET["path"]);
 
 	$endDate = new DateTime();
-	if (isset($_GET["lookAhead"]) == true)
-	{
-		$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
-	}
+	// if (isset($_GET["lookAhead"]) == true)
+	// {
+	// 	$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
+	// }
 	
 	$data = $ical->events();
 	if (isset($_GET["showAll"]) == true)
@@ -16,10 +16,9 @@
 		$data = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
 	}
 	
-	$events = $ical->sortEventsWithOrder($data, SORT_DESC);
-	$lastBuildDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($events[0]["DTSTART"]));
-	
 	$events = $ical->sortEventsWithOrder($data, SORT_ASC);
+	
+	$lastBuildDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($events[sizeof($events) - 1]["DTSTART"]));
 	$pubDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($events[0]["DTSTART"]));
 	
 	header("Content-Type: application/rss+xml");
@@ -35,7 +34,7 @@
 	print("<pubDate>" . $pubDate . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
 	
-	foreach ($data as $event)
+	foreach ($events as $event)
 	{
 		print("<item>\n");
 		print("<title>" . htmlspecialchars($event["SUMMARY"]) . "</title>\n");
