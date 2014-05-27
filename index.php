@@ -16,11 +16,11 @@
 		$data = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
 	}
 	
-	$data = $ical->sortEventsWithOrder($data, SORT_DESC);
-	$lastBuildDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]));
+	$events = $ical->sortEventsWithOrder($data, SORT_DESC);
+	$lastBuildDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($events[0]["DTSTART"]));
 	
-	$data = $ical->sortEventsWithOrder($data, SORT_ASC);
-	$pubDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]));
+	$events = $ical->sortEventsWithOrder($data, SORT_ASC);
+	$pubDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($events[0]["DTSTART"]));
 	
 	header("Content-Type: application/rss+xml");
 
