@@ -6,6 +6,6 @@ gunicorn==18.0
 wsgiref==0.1.2
 icalendar==2.2
 pytz==2012c
-dateutil
+python-dateutil
 PyRSS2Gen
 beautifulsoup
