@@ -4,7 +4,11 @@
 
 	$ical = new ical($_GET["path"]);
 
+	$data = $ical->sortEventsWithOrder($ical->events(), SORT_DESC);
+	$lastBuildDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]));
+	
 	$data = $ical->sortEventsWithOrder($ical->events(), SORT_ASC);
+	$pubDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]));
 	
 	header("Content-Type: application/rss+xml");
 
@@ -15,8 +19,8 @@
 	print("<title>ical2rss feed</title>\n");
 	print("<description>An ical feed converted to RSS.</description>\n");
 	print("<link>" . $_GET["path"] . "</link>\n");
-	print("<lastBuildDate>" . date(DATE_RSS) . "</lastBuildDate>\n");
-	print("<pubDate>" . date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"])) . "</pubDate>\n");
+	print("<lastBuildDate>" . $lastBuildDate . "</lastBuildDate>\n");
+	print("<pubDate>" . $pubDate . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
 	
 	if ($_GET["showAll"] != "true")
