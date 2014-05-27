@@ -1,45 +1,11 @@
-ical2json
+ical2rss
 =========
 
-This is a super simple webservice that consumes iCal data (.ics file) that is publicly available at an HTTP URL and returns JSON data.
+This is a super simple webservice that consumes iCal data (.ics file) that is publicly available at an HTTP URL and returns an RSS feed.
 
 
-Installation
-------------
-
-```
-$ git clone https://github.com/philippbosch/ical2json.git
-Cloning into 'ical2json'...
-remote: Reusing existing pack: 54, done.
-remote: Total 54 (delta 0), reused 0 (delta 0)
-Unpacking objects: 100% (54/54), done.
-Checking connectivity... done.
-
-$ cd ical2json
-$ virtualenv venv
-New python executable in venv/bin/python2.7
-Also creating executable in venv/bin/python
-Installing Setuptools..............................................................................................................................................................................................................................done.
-Installing Pip.....................................................................................................................................................................................................................................................................................................................................done.
-
-$ source venv/bin/activate
-$ pip install -r requirements.txt
-Downloading/unpacking ...
-...
-Successfully installed Flask Jinja2 Werkzeug gunicorn icalendar pytz distribute
-Cleaning up...
-
-$ python app.py
- * Running on http://0.0.0.0:5000/
-```
-
-
-
-
-Installation on Heroku
+Installation (on Heroku)
 ----------------------
-
-First, install locally (see above). Then:
 
 ```
 $ heroku create
@@ -126,12 +92,6 @@ The response would look something like this:
   }
 }
 ```
-
-JSON-P Callback
----------------
-
-If you want to consume the JSON data with JavaScript on a website you may need to utilize JSON-P. Therefore simply append <code>?callback=*yourCallBackFunction*</code> to the URL, and we'll wrap the response in <code>yourCallBackFunction(…);</code>.
-
 
 
 Status
