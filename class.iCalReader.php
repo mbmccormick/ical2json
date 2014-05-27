@@ -267,6 +267,7 @@ class ICal
 
         $extendedEvents = array();
         
+        /*
         if ($rangeStart !== false) {
             $rangeStart = new DateTime();
         } else {
@@ -278,6 +279,7 @@ class ICal
         } else {
             $rangeEnd = new DateTime($rangeEnd);
         }
+        */
 
         $rangeStart = $rangeStart->format('U');
         $rangeEnd   = $rangeEnd->format('U');
