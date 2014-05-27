@@ -9,8 +9,8 @@ Installation (on Heroku)
 
 ```
 $ heroku create
-Creating polar-beyond-7859... done, stack is cedar
-http://polar-beyond-7859.herokuapp.com/ | git@heroku.com:polar-beyond-7859.git
+Creating ical2rss... done, stack is cedar
+http://ical2rss.herokuapp.com/ | git@heroku.com:ical2rss.git
 Git remote heroku added
 
 $ git push heroku master
@@ -21,23 +21,32 @@ Compressing objects: 100% (52/52), done.
 Writing objects: 100% (59/59), 7.95 KiB | 0 bytes/s, done.
 Total 59 (delta 21), reused 0 (delta 0)
 
------> Python app detected
------> No runtime.txt provided; assuming python-2.7.6.
------> Preparing Python runtime (python-2.7.6)
------> Installing Setuptools (2.1)
------> Installing Pip (1.5.4)
------> Installing dependencies using Pip (1.5.4)
-...
-       Successfully installed Flask Jinja2 Werkzeug gunicorn icalendar pytz distribute
-       Cleaning up...
+-----> PHP app detected
+ !     WARNING:        No composer.json found.
+       Using index.php to declare PHP applications is considered legacy
+       functionality and may lead to unexpected behavior.
+       See https://devcenter.heroku.com/categories/php
+-----> Setting up runtime environment...
+       - PHP 5.5.12
+       - Apache 2.4.9
+       - Nginx 1.4.6
+-----> Installing PHP extensions:
+       - opcache (automatic; bundled, using 'ext-opcache.ini')
+-----> Installing dependencies...
+       Composer version 7131607ad1d251c790ce566119d647e008972aa5 2014-05-27 14:26:24
+       Loading composer repositories with package information
+       Installing dependencies
+       Nothing to install or update
+       Generating optimized autoload files
+-----> Building runtime environment...
+       NOTICE: No Procfile, defaulting to 'web: vendor/bin/heroku-php-apache2'
 -----> Discovering process types
        Procfile declares types -> web
+-----> Compressing... done, 57.3MB
+-----> Launching... done, v16
+       http://ical2rss.herokuapp.com/ deployed to Heroku
 
------> Compressing... done, 30.6MB
------> Launching... done, v3
-       http://polar-beyond-7859.herokuapp.com/ deployed to Heroku
-
-To git@heroku.com:polar-beyond-7859.git
+To git@heroku.com:ical2rss.git
  * [new branch]      master -> master
 ```
 
