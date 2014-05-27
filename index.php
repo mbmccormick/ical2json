@@ -16,7 +16,7 @@
 	print("<description>An ical feed converted to RSS.</description>\n");
 	print("<link>" . $_GET["path"] . "</link>\n");
 	print("<lastBuildDate>" . date(DATE_RSS) . "</lastBuildDate>\n");
-	print("<pubDate>" . $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]) . "</pubDate>\n");
+	print("<pubDate>" . date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"])) . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
 	
 	if ($_GET["showAll"] != "true")
