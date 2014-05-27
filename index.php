@@ -25,8 +25,8 @@
 	foreach ($data as $event)
 	{
 		print("<item>\n");
-		print("<title>" . $event["SUMMARY"] . "</title>\n");
-		print("<description>" . $event["DESCRIPTION"] . "</description>\n");
+		print("<title>" . htmlspecialchars($event["SUMMARY"]) . "</title>\n");
+		print("<description>" . htmlspecialchars($event["DESCRIPTION"]) . "</description>\n");
 		print("<link>" . $event["UID"] . "</link>\n");
 		print("<guid>" . $event["UID"] . "</guid>\n");
 		print("<pubDate>" . date(DATE_RSS, $ical->iCalDateToUnixTimestamp($event["DTSTART"])) . "</pubDate>\n");
