@@ -56,7 +56,17 @@ class ICal
             return false;
         }
         
-        $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+        // $lines = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, $filename);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $output = curl_exec($ch);
+        $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); //get the code of request
+        curl_close($ch);
+
+        $lines = split("\n", $output);
+
         if (stristr($lines[0], 'BEGIN:VCALENDAR') === false) {
             return false;
         } else {
