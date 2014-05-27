@@ -269,6 +269,8 @@ class ICal
         
         if ($rangeStart !== false) {
             $rangeStart = new DateTime();
+        } else {
+            $rangeStart = new DateTime($rangeStart);
         }
 
         if ($rangeEnd !== false or $rangeEnd <= 0) {
@@ -279,8 +281,6 @@ class ICal
 
         $rangeStart = $rangeStart->format('U');
         $rangeEnd   = $rangeEnd->format('U');
-
-        
 
         // loop through all events by adding two new elements
         foreach ($events as $anEvent) {
