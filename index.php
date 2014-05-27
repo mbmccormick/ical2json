@@ -3,16 +3,16 @@
 	require "class.iCalReader.php";
 
 	$ical = new ical($_GET["path"]);
-
-	$endDate = new DateTime();
-	// if (isset($_GET["lookAhead"]) == true)
-	// {
-	// 	$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
-	// }
 	
 	$events = $ical->sortEventsWithOrder($ical->events(), SORT_ASC);
+
+	$endDate = new DateTime();
+	if (isset($_GET["lookAhead"]) == true)
+	{
+		$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
+	}
 	
-	if (isset($_GET["showAll"]) == true)
+	if (isset($_GET["showAll"]) == false)
 	{
 		$events = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
 	}
