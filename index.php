@@ -4,6 +4,8 @@
 
 	$ical = new ical($_GET["path"]);
 
+	$data = $ical->events();
+	
 	header("Content-Type: application/rss+xml");
 
 	print("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
@@ -14,14 +16,12 @@
 	print("<description>An ical feed converted to RSS.</description>\n");
 	print("<link>" . $_GET["path"] . "</link>\n");
 	print("<lastBuildDate>" . date(DATE_RSS) . "</lastBuildDate>\n");
-	print("<pubDate>" . date(DATE_RSS) . "</pubDate>\n");
+	print("<pubDate>" . $ical->iCalDateToUnixTimestamp($events[0]["DTSTART"]) . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
 	
-	$data = $ical->eventsFromRange(new DateTime(), new DateTime('1970/01/01'));
+	if ($_GET["showAll"] != "true")
+		$data = $ical->eventsFromRange(new DateTime('1970/01/01'), new DateTime());
 	
-	if ($_GET["showAll"] == "true")
-		$data = $ical->events();
-
 	foreach ($data as $event)
 	{
 		print("<item>\n");
