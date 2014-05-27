@@ -14,7 +14,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return u'Please use like <code>http://<script>document.write(location.host);</script><noscript>ical2json.pb.io</noscript>/http://www.myserver.com/path/to/file.ics</code><br>Source code and instructions at <a href="http://github.com/philippbosch/ical2json">http://github.com/philippbosch/ical2json</a>.'
+    return u'Please use like <code>http://<script>document.write(location.host);</script><noscript>ical2rss.herokuapp.com</noscript>/http://www.myserver.com/path/to/file.ics</code><br>Source code and instructions at <a href="http://github.com/mbmccormick/ical2rss">http://github.com/mbmccormick/ical2rss</a>.'
 
 @app.route('/<path:url>')
 def convert_from_url(url):
