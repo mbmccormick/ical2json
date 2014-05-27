@@ -65,7 +65,7 @@ class ICal
         $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE); //get the code of request
         curl_close($ch);
 
-        $lines = explode("\n", $output);
+        $lines = explode("\r\n", $output);
 
         if (stristr($lines[0], 'BEGIN:VCALENDAR') === false) {
             return false;
