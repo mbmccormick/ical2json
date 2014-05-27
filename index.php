@@ -22,7 +22,7 @@
 		print("<description>" . $event["DESCRIPTION"] . "</description>\n");
 		print("<link>" . $event["UID"] . "</link>\n");
 		print("<guid>" . $event["UID"] . "</guid>\n");
-		print("<pubDate>" . $event["DTSTART"] . "</pubDate>\n");
+		print("<pubDate>" . date(DATE_RSS, $ical->iCalDateToUnixTimestamp($event["DTSTART"])) . "</pubDate>\n");
 		print("</item>\n");
 	}
 
