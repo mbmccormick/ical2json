@@ -23,8 +23,17 @@
 	print("<pubDate>" . $pubDate . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
 	
-	if ($_GET["showAll"] != "true")
-		$data = $ical->eventsFromRange(new DateTime('1970/01/01'), new DateTime());
+	$endDate = new DateTime();
+	
+	if ($_GET["lookAhead"] != null)
+	{
+		$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
+	}
+	
+	if ($_GET["showAll"] != null)
+	{
+		$data = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
+	}
 	
 	foreach ($data as $event)
 	{
