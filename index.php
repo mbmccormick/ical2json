@@ -5,13 +5,13 @@
 	$ical = new ical($_GET["path"]);
 
 	$endDate = new DateTime();
-	if ($_GET["lookAhead"] != null)
+	if (isset($_GET["lookAhead"]) == true)
 	{
 		$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
 	}
 	
 	$data = $ical->events();
-	if ($_GET["showAll"] != null)
+	if (isset($_GET["showAll"]) == true)
 	{
 		$data = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
 	}
