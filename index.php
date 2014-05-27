@@ -4,6 +4,8 @@
 
 	$ical = new ical($_GET["path"]);
 
+	header("Content-Type: application/rss+xml");
+
 	print("<?xml version=\"1.0\" encoding=\"UTF-8\" ?>\n");
 	print("<rss version=\"2.0\">\n");
 	print("<channel>\n");
