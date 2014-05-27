@@ -5,6 +5,9 @@ import os
 from flask import Flask, abort, request
 from urllib import urlopen
 from calendar_parser import CalendarParser
+from dateutil.parser import *
+from dateutil.tz import *
+from datetime import *
 import PyRSS2Gen
 
 app = Flask(__name__)
@@ -30,7 +33,7 @@ def convert_from_url(url):
             link = event["url"],
             description = event["description"],
             guid = PyRSS2Gen.Guid(event["url"]),
-            pubDate = event["start_time"]
+            pubDate = parse(event["start_time"])
         )
         
         events.append(item)
@@ -39,7 +42,7 @@ def convert_from_url(url):
         title = cal["title"],
         link = cal["url"],
         description = cal["subtitle"],
-        lastBuildDate = datetime.datetime.now(),
+        lastBuildDate = datetime.now(),
         items = events
     )
 
