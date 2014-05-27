@@ -4,7 +4,7 @@
 
 	$ical = new ical($_GET["path"]);
 
-	$data = $ical->events();
+	$data = $ical->sortEventsWithOrder($ical->events(), SORT_ASC);
 	
 	header("Content-Type: application/rss+xml");
 
