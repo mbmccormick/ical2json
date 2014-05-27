@@ -4,10 +4,22 @@
 
 	$ical = new ical($_GET["path"]);
 
-	$data = $ical->sortEventsWithOrder($ical->events(), SORT_DESC);
+	$endDate = new DateTime();
+	if ($_GET["lookAhead"] != null)
+	{
+		$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
+	}
+	
+	$data = $ical->events();
+	if ($_GET["showAll"] != null)
+	{
+		$data = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
+	}
+	
+	$data = $ical->sortEventsWithOrder($data, SORT_DESC);
 	$lastBuildDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]));
 	
-	$data = $ical->sortEventsWithOrder($ical->events(), SORT_ASC);
+	$data = $ical->sortEventsWithOrder($data, SORT_ASC);
 	$pubDate = date(DATE_RSS, $ical->iCalDateToUnixTimestamp($data[0]["DTSTART"]));
 	
 	header("Content-Type: application/rss+xml");
@@ -22,18 +34,6 @@
 	print("<lastBuildDate>" . $lastBuildDate . "</lastBuildDate>\n");
 	print("<pubDate>" . $pubDate . "</pubDate>\n");
 	print("<ttl>1800</ttl>\n");
-	
-	$endDate = new DateTime();
-	
-	if ($_GET["lookAhead"] != null)
-	{
-		$endDate->add(new DateInterval("P" . $_GET["lookAhead"] . "D"));
-	}
-	
-	if ($_GET["showAll"] != null)
-	{
-		$data = $ical->eventsFromRange(new DateTime("1970/01/01"), $endDate);
-	}
 	
 	foreach ($data as $event)
 	{
